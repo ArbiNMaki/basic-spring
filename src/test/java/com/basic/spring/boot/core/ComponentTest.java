@@ -1,6 +1,8 @@
 package com.basic.spring.boot.core;
 
+import com.basic.spring.boot.core.repository.CategoryRepository;
 import com.basic.spring.boot.core.repository.ProductRepository;
+import com.basic.spring.boot.core.service.CategoryService;
 import com.basic.spring.boot.core.service.ProductService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,5 +35,13 @@ public class ComponentTest {
         ProductRepository productRepository = applicationContext.getBean(ProductRepository.class);
 
         Assertions.assertSame(productRepository, productService.getProductRepository());
+    }
+
+    @Test
+    void testSetterDependencyInjection() {
+        CategoryService categoryService = applicationContext.getBean(CategoryService.class);
+        CategoryRepository categoryRepository = applicationContext.getBean(CategoryRepository.class);
+
+        Assertions.assertSame(categoryRepository, categoryService.getCategoryRepository());
     }
 }
