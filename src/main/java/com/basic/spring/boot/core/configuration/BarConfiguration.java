@@ -1,4 +1,4 @@
-package com.basic.spring.boot.core;
+package com.basic.spring.boot.core.configuration;
 
 import com.basic.spring.boot.core.data.Bar;
 import org.springframework.context.annotation.Bean;
