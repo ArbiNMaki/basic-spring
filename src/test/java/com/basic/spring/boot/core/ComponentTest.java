@@ -1,5 +1,6 @@
 package com.basic.spring.boot.core;
 
+import com.basic.spring.boot.core.data.MultiFoo;
 import com.basic.spring.boot.core.repository.CategoryRepository;
 import com.basic.spring.boot.core.repository.CustomerRepository;
 import com.basic.spring.boot.core.repository.ProductRepository;
@@ -49,7 +50,6 @@ public class ComponentTest {
 
     @Test
     void testFieldDependencyInjection() {
-
         CustomerService customerService = applicationContext.getBean(CustomerService.class);
 
         CustomerRepository normalCustomerRepository = applicationContext.getBean("normalCustomerRepository",CustomerRepository.class);
@@ -57,6 +57,12 @@ public class ComponentTest {
 
         Assertions.assertSame(normalCustomerRepository, customerService.getNormalCustomerRepository());
         Assertions.assertSame(premiumCustomerRepository, customerService.getPremiumCustomerRepository());
+    }
 
+    @Test
+    void testObjectProvider() {
+        MultiFoo multiFoo = applicationContext.getBean(MultiFoo.class);
+
+        Assertions.assertEquals(3, multiFoo.getFoos().size());
     }
 }
