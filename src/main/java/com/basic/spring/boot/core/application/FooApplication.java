@@ -1,11 +1,14 @@
 package com.basic.spring.boot.core.application;
 
 import com.basic.spring.boot.core.data.Foo;
+import com.basic.spring.boot.core.listener.AppStartingListener;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class FooApplication {
@@ -20,6 +23,7 @@ public class FooApplication {
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(FooApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
+        application.setListeners(List.of(new AppStartingListener()));
 
         ConfigurableApplicationContext applicationContext = application.run(args);
 
